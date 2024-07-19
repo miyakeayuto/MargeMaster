@@ -16,18 +16,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float speed = 3f;                      //移動速度
     [SerializeField] float playerSpeed;
     [SerializeField] float jumpPower = 150;                 //ジャンプ力
-    [SerializeField] GameObject clearUI;                    //クリア時に出すUI
     [SerializeField] Text textTimer;                        //タイマーのテキスト
+    [SerializeField] bool isDoMarge;                        //マージさせるかどうか
     bool isMarge;                                           //合体したかどうか
-
     Rigidbody2D rigidbody;
+    public Gamemanager gamemanager;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        isMarge = false;
-        clearUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,9 +56,10 @@ public class PlayerManager : MonoBehaviour
             Jump();
         }
 
+        //クリア関数呼び出し
         if (isMarge)
-        {
-            clearUI.SetActive(true);
+        {//合体フラグが建ったら
+            gamemanager.Clear();
         }
 
     }
@@ -84,8 +83,13 @@ public class PlayerManager : MonoBehaviour
         //バブルじゃなければ抜ける
         if (!player) return;
 
-        //合体させる
-        Merge(this, player);
+        if(isDoMarge)
+        {
+            //合体フラグを建たせる
+            isMarge = true;
+            //合体させる
+            Merge(this, player);
+        }
     }
 
     //自機を合体させる
@@ -101,9 +105,6 @@ public class PlayerManager : MonoBehaviour
         //シーンから削除
         Destroy(playerA.gameObject);
         Destroy(playerB.gameObject);
-
-        //合体フラグを建たせる
-        isMarge = true;
     }
 
 }

@@ -8,12 +8,14 @@ public class Gamemanager : MonoBehaviour
 {
     [SerializeField] float timer;                   //タイマー
     [SerializeField] Text timerText;                //タイマーテキスト
-    [SerializeField] GameObject timeOverText;             //時間切れのテキスト
+    [SerializeField] GameObject timeOverText;       //時間切れのテキスト
+    [SerializeField] GameObject clearUI;            //クリア時に出すUI
 
     // Start is called before the first frame update
     void Start()
     {
         timeOverText.SetActive(false);
+        clearUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,5 +39,17 @@ public class Gamemanager : MonoBehaviour
     void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //次のステージ
+    public void Next()
+    {
+        SceneManager.LoadScene("1-2");
+    }
+
+    //クリア
+    public void Clear()
+    {
+        clearUI.SetActive (true);
     }
 }
