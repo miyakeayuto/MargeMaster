@@ -18,7 +18,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] float jumpPower = 150;                 //ジャンプ力
     [SerializeField] Text textTimer;                        //タイマーのテキスト
     [SerializeField] bool isDoMarge;                        //マージさせるかどうか
-    bool isMarge;                                           //合体したかどうか
     Rigidbody2D rigidbody;
     public Gamemanager gamemanager;
 
@@ -26,11 +25,20 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        gamemanager = GameObject.Find("Gamemagager").GetComponent<Gamemanager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //ポーズ中かどうか
+        if (gamemanager.IsPause())
+        {
+            //Updateから抜ける
+            return;
+        }
+
+        //制限時間が0だったら
         if(textTimer.text == "0")
         {
             //Updateに入らないようにする
@@ -55,13 +63,6 @@ public class PlayerManager : MonoBehaviour
         {//スペースキーが押されたら
             Jump();
         }
-
-        //クリア関数呼び出し
-        if (isMarge)
-        {//合体フラグが建ったら
-            gamemanager.Clear();
-        }
-
     }
 
     /// <summary>
@@ -85,8 +86,8 @@ public class PlayerManager : MonoBehaviour
 
         if(isDoMarge)
         {
-            //合体フラグを建たせる
-            isMarge = true;
+            //クリアUI表示関数呼び出し
+            gamemanager.Clear();
             //合体させる
             Merge(this, player);
         }
@@ -106,5 +107,4 @@ public class PlayerManager : MonoBehaviour
         Destroy(playerA.gameObject);
         Destroy(playerB.gameObject);
     }
-
 }

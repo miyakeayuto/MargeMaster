@@ -26,7 +26,7 @@ public class TitleManager : MonoBehaviour
     //ゲームスタート
     public void OnClickStart()
     {
-        SceneManager.LoadScene("1-1");
+        SceneManager.LoadScene("StageSelect");
     }
 
     //ゲーム終了

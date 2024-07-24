@@ -10,12 +10,14 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] Text timerText;                //タイマーテキスト
     [SerializeField] GameObject timeOverText;       //時間切れのテキスト
     [SerializeField] GameObject clearUI;            //クリア時に出すUI
+    [SerializeField] GameObject posePanel;          //ポーズUI
 
     // Start is called before the first frame update
     void Start()
     {
         timeOverText.SetActive(false);
         clearUI.SetActive(false);
+        posePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,9 +49,52 @@ public class Gamemanager : MonoBehaviour
         SceneManager.LoadScene("1-2");
     }
 
+    public void StageSelect()
+    {
+        SceneManager.LoadScene("StageSelect");
+    }
+
     //クリア
     public void Clear()
     {
         clearUI.SetActive (true);
+    }
+
+    //ポーズ画面
+    public void GamePose()
+    {
+        posePanel.SetActive (true);
+
+        //Updateに入らないようにする
+        enabled = false;
+
+        //Updateから抜ける
+        return;
+    }
+
+    //ポーズ画面（リトライ関数）
+    public void Restart()
+    {
+        posePanel.SetActive(false);
+        Invoke("Retry", 0.5f);
+    }
+
+    //ポーズ画面（ステージを抜ける）
+    public void StageExit()
+    {
+        posePanel.SetActive(false);
+    }
+
+    //ゲーム画面にもどる
+    public void BackGame()
+    {
+        posePanel.SetActive(false);
+    }
+
+    //ポーズかどうか
+    public bool IsPause()
+    {
+        //enabledを返してtrueだったらポーズ状態
+        return !enabled;
     }
 }
