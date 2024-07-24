@@ -83,12 +83,14 @@ public class Gamemanager : MonoBehaviour
     public void StageExit()
     {
         posePanel.SetActive(false);
+        SceneManager.LoadScene("StageSelect");
     }
 
     //ゲーム画面にもどる
     public void BackGame()
     {
         posePanel.SetActive(false);
+        enabled = true;
     }
 
     //ポーズかどうか
