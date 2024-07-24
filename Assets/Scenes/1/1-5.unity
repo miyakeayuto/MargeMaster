@@ -889,7 +889,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 586514}
         m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
         m_MethodName: StageExit
         m_Mode: 1
@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 586514}
         m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -1705,7 +1705,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 586514}
         m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
         m_MethodName: BackGame
         m_Mode: 1
@@ -1915,7 +1915,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 586514}
         m_TargetAssemblyTypeName: Gamemanager, Assembly-CSharp
         m_MethodName: GamePose
         m_Mode: 1

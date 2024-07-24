@@ -46,7 +46,10 @@ public class Gamemanager : MonoBehaviour
     //次のステージ
     public void Next()
     {
-        SceneManager.LoadScene("1-2");
+        //現在のシーンのインデックス番号を取得
+        int nowSceneIndexNumber = SceneManager.GetActiveScene().buildIndex;
+
+        SceneManager.LoadScene(++nowSceneIndexNumber);
     }
 
     public void StageSelect()
