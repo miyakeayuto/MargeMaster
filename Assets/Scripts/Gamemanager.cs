@@ -61,6 +61,12 @@ public class Gamemanager : MonoBehaviour
     public void Clear()
     {
         clearUI.SetActive (true);
+
+        //Update‚É“ü‚ç‚È‚¢‚æ‚¤‚É‚·‚é
+        enabled = false;
+
+        //Update‚©‚ç”²‚¯‚é
+        return;
     }
 
     //ƒ|[ƒY‰æ–Ê

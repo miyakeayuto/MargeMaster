@@ -24,6 +24,9 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ジャイロセンサーを有効化する
+        Input.gyro.enabled = true;
+
         rigidbody = GetComponent<Rigidbody2D>();
         gamemanager = GameObject.Find("Gamemagager").GetComponent<Gamemanager>();
     }
@@ -48,18 +51,24 @@ public class PlayerManager : MonoBehaviour
         }
         //移動処理
 
+        /*
         // Aキーを押したら左方向へ進む
         if (Input.GetKey(KeyCode.A)) playerSpeed = -speed;
         // Dキーを押したら右方向へ進む
         else if (Input.GetKey(KeyCode.D)) playerSpeed = speed;
         // 何もおさなかったら止まる
         else playerSpeed = 0;
+        */
+
+        //ジャイロ操作
+
+
 
         rigidbody.velocity = new Vector2(playerSpeed, rigidbody.velocity.y);
 
 
         //ジャンプ処理
-        if (Input.GetKeyDown("space"))
+        if (Input.GetMouseButtonDown(0))
         {//スペースキーが押されたら
             Jump();
         }
