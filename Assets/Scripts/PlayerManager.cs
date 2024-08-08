@@ -51,17 +51,14 @@ public class PlayerManager : MonoBehaviour
         }
         //移動処理
 
-        /*
         // Aキーを押したら左方向へ進む
         if (Input.GetKey(KeyCode.A)) playerSpeed = -speed;
         // Dキーを押したら右方向へ進む
         else if (Input.GetKey(KeyCode.D)) playerSpeed = speed;
         // 何もおさなかったら止まる
         else playerSpeed = 0;
-        */
 
         //ジャイロ操作
-
 
 
         rigidbody.velocity = new Vector2(playerSpeed, rigidbody.velocity.y);
