@@ -3,6 +3,7 @@
 //2024/7/19
 //三宅歩人
 //===================================
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,25 @@ public class TitleManager : MonoBehaviour
     //ゲームスタート
     public void OnClickStart()
     {
-        SceneManager.LoadScene("StageSelect");
+        //ユーザー登録
+        bool isSuccess = NetWorkManager.Instance.LoadUserData();
+        if(!isSuccess)
+        {
+            //ユーザーデータが保存されていない場合は登録
+            StartCoroutine(NetWorkManager.Instance.RegistUser(
+                Guid.NewGuid().ToString(),          //名前                        ※Guid=>128bitの重複しないランダムな値。名前を入力させるならUIから取得。
+                result =>               //登録終了後の処理
+                {
+                    //画面遷移
+                    SceneManager.LoadScene("StageSelect");
+                }));
+        }
+        else
+        {
+            //ユーザーデータが保存されている場合は登録せず次の画面へ
+            //画面遷移
+            SceneManager.LoadScene("StageSelect");
+        }
     }
 
     //ゲーム終了
