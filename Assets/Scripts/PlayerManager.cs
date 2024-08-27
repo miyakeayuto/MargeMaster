@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool isDoMarge;                        //マージさせるかどうか
     Rigidbody2D rigidbody;
     public Gamemanager gamemanager;
+    public bool isLeft;                                     //←ボタンを押したかどうか
+    public bool isRight;                                    //→ボタンを押したかどうか
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,8 @@ public class PlayerManager : MonoBehaviour
 
         rigidbody = GetComponent<Rigidbody2D>();
         gamemanager = GameObject.Find("Gamemagager").GetComponent<Gamemanager>();
+        isLeft = false;
+        isRight = false;
     }
 
     // Update is called once per frame
@@ -58,17 +62,45 @@ public class PlayerManager : MonoBehaviour
         // 何もおさなかったら止まる
         else playerSpeed = 0;
 
-        //ジャイロ操作
-
+        if(isLeft)
+        {
+            playerSpeed = -speed;
+        }else if(isRight)
+        {
+            playerSpeed = speed;
+        }
 
         rigidbody.velocity = new Vector2(playerSpeed, rigidbody.velocity.y);
+    }
 
+    //スマホ操作
+    //←ボタンを押したとき
+    public void MoveLeft()
+    {
+        isLeft = true;
+    }
 
-        //ジャンプ処理
-        if (Input.GetMouseButtonDown(0))
-        {//スペースキーが押されたら
-            Jump();
-        }
+    //→ボタンを押したとき
+    public void MoveRight()
+    {
+        isRight = true;
+    }
+
+    //←ボタンを離した場合
+    public void NotMoveLeft()
+    {
+        isLeft = false;
+    }
+
+    //→ボタンを離した場合
+    public void NotMoveRight()
+    {
+        isRight = false;
+    }
+
+    public void MoveJump()
+    {
+        Jump();
     }
 
     /// <summary>
