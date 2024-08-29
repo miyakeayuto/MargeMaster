@@ -24,9 +24,16 @@ public class TitleManager : MonoBehaviour
         
     }
 
+    /*IEnumerator cheackCatalog()
+    {
+
+    }*/
+
     //ゲームスタート
     public void OnClickStart()
     {
+        //StartCoroutine(cheackCatalog());
+
         //ユーザー登録
         bool isSuccess = NetWorkManager.Instance.LoadUserData();
         if(!isSuccess)
