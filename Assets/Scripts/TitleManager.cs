@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -24,15 +25,29 @@ public class TitleManager : MonoBehaviour
         
     }
 
-    /*IEnumerator cheackCatalog()
+    IEnumerator cheackCatalog()
     {
-
-    }*/
+        var checkHandle = Addressables.CheckForCatalogUpdates(false);
+        yield return checkHandle;
+        var updates = checkHandle.Result;
+        Addressables.Release(checkHandle);
+        if (updates.Count >= 1)
+        {
+            //更新がある場合はロード画面へ
+            //画面遷移
+            SceneManager.LoadScene("LoadScene");
+        }
+        else
+        {
+            //更新がない場合はステージ選択画面へ
+            SceneManager.LoadScene("StageSelect");
+        }
+    }
 
     //ゲームスタート
     public void OnClickStart()
     {
-        //StartCoroutine(cheackCatalog());
+        StartCoroutine(cheackCatalog());
 
         //ユーザー登録
         bool isSuccess = NetWorkManager.Instance.LoadUserData();
