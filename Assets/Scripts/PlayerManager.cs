@@ -19,18 +19,15 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Text textTimer;                        //タイマーのテキスト
     [SerializeField] bool isDoMarge;                        //マージさせるかどうか
     Rigidbody2D rigidbody;
-    public Gamemanager gamemanager;
+    public UISceneManager uiManager;
     public bool isLeft;                                     //←ボタンを押したかどうか
     public bool isRight;                                    //→ボタンを押したかどうか
 
     // Start is called before the first frame update
     void Start()
     {
-        //ジャイロセンサーを有効化する
-        Input.gyro.enabled = true;
-
         rigidbody = GetComponent<Rigidbody2D>();
-        gamemanager = GameObject.Find("Gamemagager").GetComponent<Gamemanager>();
+        uiManager = GameObject.Find("UIManager").GetComponent<UISceneManager>();
         isLeft = false;
         isRight = false;
     }
@@ -39,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         //ポーズ中かどうか
-        if (gamemanager.IsPause())
+        if (uiManager.IsPause())
         {
             //Updateから抜ける
             return;
@@ -53,7 +50,10 @@ public class PlayerManager : MonoBehaviour
             //Updateから抜ける
             return;
         }
+
+        //==========
         //移動処理
+        //==========
 
         // Aキーを押したら左方向へ進む
         if (Input.GetKey(KeyCode.A)) playerSpeed = -speed;
@@ -125,7 +125,7 @@ public class PlayerManager : MonoBehaviour
         if(isDoMarge)
         {
             //クリアUI表示関数呼び出し
-            gamemanager.Clear();
+            uiManager.Clear();
             //合体させる
             Merge(this, player);
         }
