@@ -129,6 +129,16 @@ public class PlayerManager : MonoBehaviour
             //合体させる
             Merge(this, player);
         }
+
+        //棘に当たった時
+        if(collision.gameObject.tag == "Spike")
+        {
+            //ゲームオーバー
+            //Updateに入らないようにする
+            enabled = false;
+            //Updateから抜ける
+            return;
+        }
     }
 
     //自機を合体させる
