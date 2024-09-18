@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         //制限時間が0だったら
-        if(textTimer.text == "0")
+        if(uiManager.timer == 0)
         {
             //Updateに入らないようにする
             enabled = false;
@@ -98,6 +98,7 @@ public class PlayerManager : MonoBehaviour
         isRight = false;
     }
 
+    //ジャンプボタン押した場合
     public void MoveJump()
     {
         Jump();

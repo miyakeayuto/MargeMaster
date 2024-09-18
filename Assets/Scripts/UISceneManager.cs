@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class UISceneManager : MonoBehaviour
 {
-    [SerializeField] float timer;                   //タイマー
+    public float timer;                   //タイマー
     [SerializeField] Text timerText;                //タイマーテキスト
     [SerializeField] GameObject timeOverText;       //時間切れのテキスト
     [SerializeField] GameObject clearUI;            //クリア時に出すUI
@@ -20,6 +20,7 @@ public class UISceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 20;
         timeOverText.SetActive(false);
         clearUI.SetActive(false);
         posePanel.SetActive(false);

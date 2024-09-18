@@ -13,7 +13,7 @@ public class Gamemanager : MonoBehaviour
     [SerializeField] GameObject posePanel;          //ポーズUI
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //UIシーンを読み込む
         SceneManager.LoadScene("UI",LoadSceneMode.Additive);
