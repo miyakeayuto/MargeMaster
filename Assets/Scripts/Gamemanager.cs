@@ -6,11 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : MonoBehaviour
 {
-    [SerializeField] float timer;                   //タイマー
-    [SerializeField] Text timerText;                //タイマーテキスト
-    [SerializeField] GameObject timeOverText;       //時間切れのテキスト
-    [SerializeField] GameObject clearUI;            //クリア時に出すUI
-    [SerializeField] GameObject posePanel;          //ポーズUI
+    public int margeCounter;       //何回合体しないといけないか
 
     // Start is called before the first frame update
     void Awake()

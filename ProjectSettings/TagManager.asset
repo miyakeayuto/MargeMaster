@@ -7,6 +7,10 @@ TagManager:
   - ground
   - wall
   - Spike
+  - player_red
+  - player_nomal
+  - player_blue
+  - wall_blue
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - blue_wall
+  - player_blue
   - 
   - 
   - 

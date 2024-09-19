@@ -2116,12 +2116,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7642634726288809552, guid: a81ff7a4e2611664d890a0848711b157, type: 3}
+      propertyPath: margeCounter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642634726288809552, guid: a81ff7a4e2611664d890a0848711b157, type: 3}
       propertyPath: timeOverText
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8893922285528241388, guid: a81ff7a4e2611664d890a0848711b157, type: 3}
       propertyPath: m_Name
-      value: Gamemagager
+      value: Gamemanager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

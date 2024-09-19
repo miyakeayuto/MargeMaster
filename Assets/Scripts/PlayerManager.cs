@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.EventSystems;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] bool isDoMarge;                        //マージさせるかどうか
     Rigidbody2D rigidbody;
     public UISceneManager uiManager;
+    public Gamemanager gamemanager;
     public bool isLeft;                                     //←ボタンを押したかどうか
     public bool isRight;                                    //→ボタンを押したかどうか
 
@@ -28,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         uiManager = GameObject.Find("UIManager").GetComponent<UISceneManager>();
+        gamemanager = GameObject.Find("Gamemanager").GetComponent<Gamemanager>();
         isLeft = false;
         isRight = false;
     }
@@ -51,9 +54,9 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        //==========
+        //========================
         //移動処理
-        //==========
+        //========================
 
         // Aキーを押したら左方向へ進む
         if (Input.GetKey(KeyCode.A)) playerSpeed = -speed;
@@ -118,27 +121,33 @@ public class PlayerManager : MonoBehaviour
     //当たり合判定が発生したら呼ばれる
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerManager player = collision.gameObject.GetComponent<PlayerManager>();
-
-        //バブルじゃなければ抜ける
-        if (!player) return;
-
-        if(isDoMarge)
+        if(collision.gameObject.tag == "player_nomal" || collision.gameObject.tag == "player_red" || collision.gameObject.tag == "player_blue")
         {
-            //クリアUI表示関数呼び出し
-            uiManager.Clear();
-            //合体させる
-            Merge(this, player);
+            if (isDoMarge)
+            {
+                //合体させる
+                Merge(this, collision.gameObject.GetComponent<PlayerManager>());
+                if (gamemanager.margeCounter == 0)
+                {
+                    //クリアUI表示関数呼び出し
+                    uiManager.Clear();
+                }
+            }
         }
 
         //棘に当たった時
         if(collision.gameObject.tag == "Spike")
         {
-            //ゲームオーバー
-            //Updateに入らないようにする
-            enabled = false;
-            //Updateから抜ける
-            return;
+            //player_redタグ以外のオブジェクトの場合
+            if (gameObject.tag != "player_red")
+            {
+                //ゲームオーバー
+                uiManager.GameOver();
+                //Updateに入らないようにする
+                enabled = false;
+                //Updateから抜ける
+                return;
+            }
         }
     }
 
@@ -149,11 +158,66 @@ public class PlayerManager : MonoBehaviour
         Vector2 lerpPosition =
             Vector2.Lerp(playerA.transform.position, playerB.transform.position, 0.5f);
 
-        //新しい自機を生成
-        Instantiate(playerPrefabs,lerpPosition,Quaternion.identity);
+        PlayerManager player;
+
+        if((playerA.tag == "player_red" && playerB.tag == "player_blue") || (playerA.tag == "player_blue" && playerB.tag == "player_red"))
+        {
+            //新しい自機を生成
+            player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
+
+
+        }
+        else
+        {
+            //新しい自機を生成
+            player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
+        }
 
         //シーンから削除
         Destroy(playerA.gameObject);
         Destroy(playerB.gameObject);
+
+
+        //=============================
+        //生成された自機をボタンに登録
+        //=============================
+
+        //左
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerDown;   //PointerClickの部分は追加したいEventによって変更してね
+        entry.callback.AddListener((x) => player.MoveLeft());  //ラムダ式の右側は追加するメソッドです。
+
+        GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
+
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerUp; //PointerClickの部分は追加したいEventによって変更してね
+        entry.callback.AddListener((x) => player.NotMoveLeft());  //ラムダ式の右側は追加するメソッドです。
+
+        GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
+
+
+        //右
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerDown; //PointerClickの部分は追加したいEventによって変更してね
+        entry.callback.AddListener((x) => player.MoveRight());  //ラムダ式の右側は追加するメソッドです。
+
+        GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
+
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerUp; //PointerClickの部分は追加したいEventによって変更してね
+        entry.callback.AddListener((x) => player.NotMoveRight());  //ラムダ式の右側は追加するメソッドです。
+
+        GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
+
+
+        //ジャンプ
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerClick; //PointerClickの部分は追加したいEventによって変更してね
+        entry.callback.AddListener((x) => player.MoveJump());  //ラムダ式の右側は追加するメソッドです。
+
+        GameObject.Find("move_jump").GetComponent<EventTrigger>().triggers.Add(entry);
+
+        //合体カウンターを減らす
+        gamemanager.margeCounter--;
     }
 }

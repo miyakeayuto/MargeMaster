@@ -6,23 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class UISceneManager : MonoBehaviour
 {
-    public float timer;                   //タイマー
+    public float timer;                             //タイマー
+    [SerializeField] GameObject pause;
     [SerializeField] Text timerText;                //タイマーテキスト
-    [SerializeField] GameObject timeOverText;       //時間切れのテキスト
     [SerializeField] GameObject clearUI;            //クリア時に出すUI
+    [SerializeField] GameObject gameoverUI;         //ゲームオーバー時に出すUI
     [SerializeField] GameObject posePanel;          //ポーズUI
 
     void Awake()
     {//シーン遷移しても削除されない
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         timer = 20;
-        timeOverText.SetActive(false);
         clearUI.SetActive(false);
+        gameoverUI.SetActive(false);
         posePanel.SetActive(false);
     }
 
@@ -33,13 +34,24 @@ public class UISceneManager : MonoBehaviour
         timer -= Time.deltaTime;
         timerText.text = "" + (int)timer;
 
+        //タイマーが10秒切ったら
+        if (timer <= 10)
+        {
+            //色を黄色にする
+            timerText.color = Color.yellow;
+        }
+        //タイマーが5秒切ったら
+        if (timer <= 5)
+        {
+            //色を赤にする
+            timerText.color = Color.red;
+        }
         //タイマーが0になったら
         if (timer < 0)
         {
             timer = 0;
             timerText.text = "0";
-            timeOverText.SetActive(true);
-            Invoke("Retry", 1.5f);
+            GameOver();
         }
     }
 
@@ -66,7 +78,20 @@ public class UISceneManager : MonoBehaviour
     //クリア
     public void Clear()
     {
+        pause.SetActive(false);
         clearUI.SetActive(true);
+
+        //Updateに入らないようにする
+        enabled = false;
+
+        //Updateから抜ける
+        return;
+    }
+
+    public void GameOver()
+    {
+        pause.SetActive(false);
+        gameoverUI.SetActive(true);
 
         //Updateに入らないようにする
         enabled = false;
