@@ -183,37 +183,41 @@ public class PlayerManager : MonoBehaviour
         //=============================
 
         //左
+        //押してる間のボタン
         EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerDown;   //PointerClickの部分は追加したいEventによって変更してね
-        entry.callback.AddListener((x) => player.MoveLeft());  //ラムダ式の右側は追加するメソッドです。
+        entry.eventID = EventTriggerType.PointerDown;   //PointerClickの部分は追加したいEventによって変更する
+        entry.callback.AddListener((x) => player.MoveLeft());  //ラムダ式の右側は追加するメソッド
 
         GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
 
+        //ボタンを離したとき
         entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerUp; //PointerClickの部分は追加したいEventによって変更してね
-        entry.callback.AddListener((x) => player.NotMoveLeft());  //ラムダ式の右側は追加するメソッドです。
+        entry.eventID = EventTriggerType.PointerUp;
+        entry.callback.AddListener((x) => player.NotMoveLeft());
 
         GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
 
 
         //右
+        //押してる間のボタン
         entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerDown; //PointerClickの部分は追加したいEventによって変更してね
-        entry.callback.AddListener((x) => player.MoveRight());  //ラムダ式の右側は追加するメソッドです。
-
+        entry.eventID = EventTriggerType.PointerDown;
+        entry.callback.AddListener((x) => player.MoveRight());
         GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
 
+        //ボタンを離したとき
+
         entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerUp; //PointerClickの部分は追加したいEventによって変更してね
-        entry.callback.AddListener((x) => player.NotMoveRight());  //ラムダ式の右側は追加するメソッドです。
+        entry.eventID = EventTriggerType.PointerUp;
+        entry.callback.AddListener((x) => player.NotMoveRight());
 
         GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
 
 
         //ジャンプ
         entry = new EventTrigger.Entry();
-        entry.eventID = EventTriggerType.PointerClick; //PointerClickの部分は追加したいEventによって変更してね
-        entry.callback.AddListener((x) => player.MoveJump());  //ラムダ式の右側は追加するメソッドです。
+        entry.eventID = EventTriggerType.PointerClick;
+        entry.callback.AddListener((x) => player.MoveJump());
 
         GameObject.Find("move_jump").GetComponent<EventTrigger>().triggers.Add(entry);
 

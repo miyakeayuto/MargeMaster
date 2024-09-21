@@ -51,4 +51,16 @@ public class StageSelectManager : MonoBehaviour
     {
         SceneManager.LoadScene("1-5");
     }
+
+    //2-1
+    public void GoStarg2_1()
+    {
+        SceneManager.LoadScene("2-1");
+    }
+
+    //2-2
+    public void GoStarg2_2()
+    {
+        SceneManager.LoadScene("2-2");
+    }
 }

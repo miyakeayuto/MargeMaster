@@ -7,16 +7,11 @@ using UnityEngine.SceneManagement;
 public class UISceneManager : MonoBehaviour
 {
     public float timer;                             //タイマー
-    [SerializeField] GameObject pause;
+    [SerializeField] GameObject pause;              //ポーズUI
     [SerializeField] Text timerText;                //タイマーテキスト
     [SerializeField] GameObject clearUI;            //クリア時に出すUI
     [SerializeField] GameObject gameoverUI;         //ゲームオーバー時に出すUI
     [SerializeField] GameObject posePanel;          //ポーズUI
-
-    void Awake()
-    {//シーン遷移しても削除されない
-        //DontDestroyOnLoad(this.gameObject);
-    }
 
     // Start is called before the first frame update
     void Start()
