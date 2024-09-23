@@ -160,15 +160,18 @@ public class PlayerManager : MonoBehaviour
 
         PlayerManager player;
 
+        //合体した自機（タグ）がデフォ以外だった場合
         if((playerA.tag == "player_red" && playerB.tag == "player_blue") || (playerA.tag == "player_blue" && playerB.tag == "player_red"))
         {
             //新しい自機を生成
             player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
 
-
+            //タグとレイヤーを変更させて能力を継承
+            player.tag = "player_red";
+            player.blockLayer = 7;
         }
         else
-        {
+        {//デフォ同士の合体
             //新しい自機を生成
             player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
         }
@@ -187,14 +190,13 @@ public class PlayerManager : MonoBehaviour
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerDown;   //PointerClickの部分は追加したいEventによって変更する
         entry.callback.AddListener((x) => player.MoveLeft());  //ラムダ式の右側は追加するメソッド
-
+        //move_leftを探してEventTriggerに登録
         GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
 
         //ボタンを離したとき
         entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerUp;
         entry.callback.AddListener((x) => player.NotMoveLeft());
-
         GameObject.Find("move_left").GetComponent<EventTrigger>().triggers.Add(entry);
 
 
@@ -203,14 +205,13 @@ public class PlayerManager : MonoBehaviour
         entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerDown;
         entry.callback.AddListener((x) => player.MoveRight());
+        //move_rightを探してEventTriggerに登録
         GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
 
         //ボタンを離したとき
-
         entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerUp;
         entry.callback.AddListener((x) => player.NotMoveRight());
-
         GameObject.Find("move_right").GetComponent<EventTrigger>().triggers.Add(entry);
 
 
@@ -218,7 +219,7 @@ public class PlayerManager : MonoBehaviour
         entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
         entry.callback.AddListener((x) => player.MoveJump());
-
+        //move_jumpを探してEventTriggerに登録
         GameObject.Find("move_jump").GetComponent<EventTrigger>().triggers.Add(entry);
 
         //合体カウンターを減らす
