@@ -22,6 +22,12 @@ public class StageSelectManager : MonoBehaviour
         
     }
 
+    //ƒ^ƒCƒgƒ‹‚É–ß‚é
+    public void BackTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
     //1-1
     public void GoStarg1_1()
     {
@@ -62,5 +68,23 @@ public class StageSelectManager : MonoBehaviour
     public void GoStarg2_2()
     {
         SceneManager.LoadScene("2-2");
+    }
+
+    //2-3
+    public void GoStarg2_3()
+    {
+        SceneManager.LoadScene("2-3");
+    }
+
+    //2-4
+    public void GoStarg2_4()
+    {
+        SceneManager.LoadScene("2-4");
+    }
+
+    //2-5
+    public void GoStarg2_5()
+    {
+        SceneManager.LoadScene("2-5");
     }
 }

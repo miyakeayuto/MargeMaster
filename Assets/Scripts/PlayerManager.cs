@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     public Gamemanager gamemanager;
     public bool isLeft;                                     //←ボタンを押したかどうか
     public bool isRight;                                    //→ボタンを押したかどうか
+    public bool isJump;
 
     // Start is called before the first frame update
     void Start()
@@ -104,7 +105,10 @@ public class PlayerManager : MonoBehaviour
     //ジャンプボタン押した場合
     public void MoveJump()
     {
-        Jump();
+        if(isJump)
+        {
+            Jump();
+        }
     }
 
     /// <summary>
@@ -115,6 +119,7 @@ public class PlayerManager : MonoBehaviour
         //プレイヤーを上方向に力を加える
         rigidbody.AddForce(Vector2.up * jumpPower);
         transform.localPosition += new Vector3(0, 0.1f, 0);         //（※）ジャンプした時に終点の高さ分を足す
+        isJump = false;
     }
 
 
@@ -133,6 +138,11 @@ public class PlayerManager : MonoBehaviour
                     uiManager.Clear();
                 }
             }
+        }
+
+        if(collision.gameObject.tag == "ground")
+        {
+            isJump = true;
         }
 
         //棘に当たった時
@@ -168,6 +178,18 @@ public class PlayerManager : MonoBehaviour
 
             //タグとレイヤーを変更させて能力を継承
             player.tag = "player_red";
+            player.blockLayer = 7;
+        }
+        else if(playerA.tag == "player_red" || playerB.tag == "player_red")
+        {
+            //新しい自機を生成
+            player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
+            player.tag = "player_red";
+        }
+        else if(playerA.tag == "player_blue" || playerB.tag == "player_blue")
+        {
+            //新しい自機を生成
+            player = Instantiate(playerPrefabs, lerpPosition, Quaternion.identity);
             player.blockLayer = 7;
         }
         else

@@ -1381,7 +1381,7 @@ GameObject:
   - component: {fileID: 872302576}
   m_Layer: 6
   m_Name: blue_wall (1)
-  m_TagString: wall_blue
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1795,7 +1795,7 @@ GameObject:
   - component: {fileID: 1144214941}
   m_Layer: 6
   m_Name: blue_wall (2)
-  m_TagString: wall_blue
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2287,7 +2287,7 @@ GameObject:
   - component: {fileID: 1504638081}
   m_Layer: 6
   m_Name: blue_wall
-  m_TagString: wall_blue
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3110,7 +3110,7 @@ GameObject:
   - component: {fileID: 2080415362}
   m_Layer: 6
   m_Name: blue_wall (3)
-  m_TagString: wall_blue
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

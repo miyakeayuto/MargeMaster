@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NomalPlayer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4557202008638788782, guid: 38ec967cf7d5f1d45ac623f076ed3eb7, type: 3}
+      propertyPath: m_TagString
+      value: player_nomal
+      objectReference: {fileID: 0}
     - target: {fileID: 5474177486995895389, guid: 38ec967cf7d5f1d45ac623f076ed3eb7, type: 3}
       propertyPath: clearUI
       value: 
@@ -403,7 +407,7 @@ GameObject:
   - component: {fileID: 513439197}
   m_Layer: 0
   m_Name: wall (5)
-  m_TagString: wall
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1459,7 +1463,7 @@ GameObject:
   - component: {fileID: 1084653698}
   m_Layer: 0
   m_Name: wall (2)
-  m_TagString: wall
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1800,7 +1804,7 @@ GameObject:
   - component: {fileID: 1534323390}
   m_Layer: 0
   m_Name: wall (6)
-  m_TagString: wall
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1970,7 +1974,7 @@ GameObject:
   - component: {fileID: 1596186596}
   m_Layer: 0
   m_Name: wall (3)
-  m_TagString: wall
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2179,7 +2183,7 @@ GameObject:
   - component: {fileID: 1672674792}
   m_Layer: 0
   m_Name: wall (4)
-  m_TagString: wall
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2851,6 +2855,10 @@ PrefabInstance:
     - target: {fileID: 4557202008638788782, guid: 38ec967cf7d5f1d45ac623f076ed3eb7, type: 3}
       propertyPath: m_Name
       value: NomalPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557202008638788782, guid: 38ec967cf7d5f1d45ac623f076ed3eb7, type: 3}
+      propertyPath: m_TagString
+      value: player_nomal
       objectReference: {fileID: 0}
     - target: {fileID: 5474177486995895389, guid: 38ec967cf7d5f1d45ac623f076ed3eb7, type: 3}
       propertyPath: clearUI

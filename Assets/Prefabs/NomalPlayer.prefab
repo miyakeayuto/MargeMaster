@@ -138,7 +138,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1c3b921e25b452948b064bc5b411dbfb, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -168,5 +168,10 @@ MonoBehaviour:
   speed: 5
   playerSpeed: 0
   jumpPower: 350
-  clearUI: {fileID: 0}
   textTimer: {fileID: 0}
+  isDoMarge: 0
+  uiManager: {fileID: 0}
+  gamemanager: {fileID: 0}
+  isLeft: 0
+  isRight: 0
+  isJump: 0

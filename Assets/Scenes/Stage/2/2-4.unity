@@ -1641,7 +1641,7 @@ GameObject:
   - component: {fileID: 851055100}
   m_Layer: 6
   m_Name: blue_wall
-  m_TagString: wall_blue
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
