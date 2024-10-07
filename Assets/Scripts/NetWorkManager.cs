@@ -31,19 +31,24 @@ public class NetWorkManager : MonoBehaviour
     //通信処理をする際はNetWorkManager.Instance.関数名();と呼び出す。
     //================================================================
 
+    private string authToken;       //APIトークン
+
     //ユーザー登録処理
     public IEnumerator RegistUser(string name, Action<bool> result)             //Action<bool>型=>boolを引数にした関数を入れる型。通信完了時に呼び出す。
     {
         //サーバーに送信するオブジェクトを作成
         RegistUserRequest requestData = new RegistUserRequest();
         requestData.Name = name;
+
         //サーバーに送信するオブジェクトをJSONに変換
         string json = JsonConvert.SerializeObject(requestData);
+
         //送信                                 postまたはget
         UnityWebRequest request = UnityWebRequest.Post(
             API_BASE_URL + "users/store", json, "application/json");
         yield return request.SendWebRequest();      //結果を受信するまで待機
         bool isSuccess = false;
+
         if(request.result == UnityWebRequest.Result.Success
             && request.responseCode == 200)
         {//通信が成功した場合、帰ってきたJSONをオブジェクトに変換
@@ -56,6 +61,7 @@ public class NetWorkManager : MonoBehaviour
             SaveUserData();
             isSuccess = true;
         }
+
         result?.Invoke(isSuccess);          //ここで呼び出し元のresult処理を呼び出す
     }
 
