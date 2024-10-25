@@ -13,10 +13,12 @@ using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
+    [SerializeField] GameObject CreateStagePanel;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        CreateStagePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -81,8 +83,20 @@ public class TitleManager : MonoBehaviour
     }
 
     //ƒIƒvƒVƒ‡ƒ“
-    public void OnClickOption()
+    public void OnClickCreateStage()
     {
+        CreateStagePanel.SetActive(true);
+    }
 
+    public void OnClickPlay()
+    {
+        //‰æ–Ê‘JˆÚ
+        SceneManager.LoadScene("CreateStageIndex");
+    }
+
+    public void OnClickEdit()
+    {
+        //‰æ–Ê‘JˆÚ
+        SceneManager.LoadScene("CreateStageEdit");
     }
 }
