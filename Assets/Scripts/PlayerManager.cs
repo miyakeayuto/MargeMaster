@@ -63,6 +63,8 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) playerSpeed = -speed;
         // Dキーを押したら右方向へ進む
         else if (Input.GetKey(KeyCode.D)) playerSpeed = speed;
+        //Spaceキーを押したらジャンプ
+        else if (Input.GetKey(KeyCode.Space)) Jump();
         // 何もおさなかったら止まる
         else playerSpeed = 0;
 
