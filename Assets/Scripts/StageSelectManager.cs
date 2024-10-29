@@ -28,6 +28,11 @@ public class StageSelectManager : MonoBehaviour
         SceneManager.LoadScene("Title");
     }
 
+    public void CreateStage()
+    {
+        SceneManager.LoadScene("CreateStageIndex");
+    }
+
     //1-1
     public void GoStarg1_1()
     {

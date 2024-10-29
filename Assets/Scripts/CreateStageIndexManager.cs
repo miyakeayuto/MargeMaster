@@ -24,4 +24,10 @@ public class CreateStageIndexManager : MonoBehaviour
         //‰æ–Ê‘JˆÚ
         SceneManager.LoadScene("Title");
     }
+
+    public void OnClickNomalStage()
+    {
+        //‰æ–Ê‘JˆÚ
+        SceneManager.LoadScene("StageSelect");
+    }
 }
